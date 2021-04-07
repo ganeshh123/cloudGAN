@@ -1,0 +1,16 @@
+Pillow
+numpy
+torch
+scipy
+h5netcdf
+xarray
+wheel
+visdom
+torchvision
+scikit-image
+python-dotenv
+pytest
+pathlib
+dominate
+lxml
+bs4
