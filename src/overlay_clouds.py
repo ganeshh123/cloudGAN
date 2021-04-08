@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from merge_images import merge_images
 import os

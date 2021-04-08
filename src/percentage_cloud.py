@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 from count_nonblack import count_nonblack
 from PIL import Image as PillowImage

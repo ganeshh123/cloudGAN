@@ -1,3 +1,4 @@
+import sys
 #https://stackoverflow.com/questions/5953373/how-to-split-image-into-multiple-pieces-in-python/62013714#62013714
 from PIL import Image as PillowImage
 from pathlib import Path

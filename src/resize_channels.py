@@ -1,3 +1,4 @@
+import sys
 from image import ImageLoader
 from skimage.transform import resize
 import numpy as np

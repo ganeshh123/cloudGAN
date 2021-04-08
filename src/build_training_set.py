@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 
 open(Path(sys.path[0]).resolve() / 'data_store' / 'searchResults.txt', 'w').close()

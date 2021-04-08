@@ -1,3 +1,4 @@
+import sys
 from PIL import Image as PillowImage
 
 def crop_image(image, left, top, right, bottom ):

@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 import os
 from slice_image import slice_image

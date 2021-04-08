@@ -1,3 +1,4 @@
+import sys
 from PIL import Image as PillowImage
 from PIL import ImageEnhance as PillowEnhance
 from pathlib import Path

@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 
 def count_nonblack(img):

@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path, PurePath
 from image import ImageLoader
 from skimage.transform import resize
