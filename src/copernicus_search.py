@@ -2,7 +2,7 @@
 # coding: utf-8
 
 #Returns an array of manifests and filters values within a specific range
-
+import sys
 import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
