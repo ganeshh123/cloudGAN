@@ -1,7 +1,7 @@
 from pathlib import Path
 from shutil import copytree
 
-userDataPath = Path().resolve() / '..' / 'userdata'
+userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 rgbPath = userDataPath / 'rgb_store'
 masksPath = userDataPath / 'mask_store'
 inputFolder = userDataPath / 'cyclegan_input'

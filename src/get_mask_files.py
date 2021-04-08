@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 
-userDataPath = Path().resolve() / '..' / 'userdata'
+userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 defaultMaskTilesPath = (userDataPath / 'mask_store' / 'tiles').resolve()
 defaultImageFormat = '.jpg'
 

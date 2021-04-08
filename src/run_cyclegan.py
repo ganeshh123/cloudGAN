@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from numpy import loadtxt
 
-userDataPath = Path().resolve() / '..' / 'userdata'
+userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 staticDataPath = Path(str(loadtxt(userDataPath / 'staticDataPath.txt', dtype='str')))
 networkName = 'mask-cloud-networks'
 inputFolder = userDataPath / 'cyclegan_input'

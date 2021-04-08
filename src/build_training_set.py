@@ -1,6 +1,6 @@
 from pathlib import Path
 
-open(Path().resolve() / 'data_store' / 'searchResults.txt', 'w').close()
+open(Path(sys.path[0]).resolve() / 'data_store' / 'searchResults.txt', 'w').close()
 
 from copernicus_search.copernicus_search import copernicus_search
 from copernicus_download.copernicus_download import copernicus_download

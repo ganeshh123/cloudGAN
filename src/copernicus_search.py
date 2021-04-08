@@ -12,7 +12,7 @@ import os
 from authenticated_session import authenticated_session
 from image_grayscale import image_grayscale
 
-userDataPath = Path().resolve() / '..' / 'userdata'
+userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 
 def copernicus_search(amount, tagname, property, min, max, dateRange, footprint='none'):
     

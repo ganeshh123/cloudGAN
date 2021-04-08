@@ -8,7 +8,7 @@ import shutil
 
 from authenticated_session import authenticated_session
 
-userDataPath = Path().resolve() / '..' / 'userdata'
+userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 env_path = Path('..') / '.env'
 
 # List of product URLS to download

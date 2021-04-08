@@ -3,7 +3,7 @@ from numpy import loadtxt
 
 from copernicus_search import copernicus_search
 
-userDataPath = Path().resolve() / '..' / 'userdata'
+userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 staticDataPath = Path(str(loadtxt(userDataPath / 'staticDataPath.txt', dtype='str')))
 import sys
 sys.path.insert(0, str(staticDataPath))

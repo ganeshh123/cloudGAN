@@ -4,7 +4,7 @@ from pathlib import Path
 from shutil import copyfile
 from get_mask_files import get_mask_files
 
-userDataPath = Path().resolve() / '..' / 'userdata'
+userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 defaultImagesPath = (userDataPath / 'rgb_store').resolve()
 defaultMasksOutputPath = (userDataPath / 'mask_store').resolve()
 

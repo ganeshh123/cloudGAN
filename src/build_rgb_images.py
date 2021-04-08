@@ -6,7 +6,7 @@ from PIL import Image as PillowImage
 from to_false_color import to_false_color
 from crop_image import crop_image
 
-userDataPath = Path().resolve() / '..' / 'userdata'
+userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 productStorePath = userDataPath / 'product_store'
 outputImagePath = userDataPath / 'rgb_store'
 imageListPath = userDataPath / 'imagePaths.txt'

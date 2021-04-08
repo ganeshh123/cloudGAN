@@ -2,9 +2,9 @@ import os
 from pathlib import Path
 import shutil
 
-userDataPath = Path().resolve() / '..' / 'userdata'
+userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 resultsFolder = (userDataPath / 'cyclegan_output' / 'mask-cloud-networks' / 'test_latest' / 'images').resolve()
-outputFolder = Path().resolve() / '..' / 'output'
+outputFolder = Path(sys.path[0]).resolve() / '..' / 'output'
 maskOutput = (outputFolder / 'masks').resolve()
 cloudOutput = (outputFolder / 'clouds').resolve()
 

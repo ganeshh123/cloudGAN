@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 from slice_image import slice_image
 
-userDataPath = Path().resolve() / '..' / 'userdata'
+userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 defaultImagesPath = (userDataPath / 'rgb_store').resolve()
 defaultMasksPath = (userDataPath / 'mask_store').resolve()
 

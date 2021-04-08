@@ -2,7 +2,7 @@ import zipfile
 import os
 from pathlib import Path
 
-userDataPath = Path().resolve() / '..' / 'userdata'
+userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 productStorePath = userDataPath / 'product_store'
 
 def unzip_images(directory=productStorePath):

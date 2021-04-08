@@ -2,7 +2,7 @@ from pathlib import Path
 from merge_images import merge_images
 import os
 
-outputFolder = Path().resolve() / '..' / 'output'
+outputFolder = Path(sys.path[0]).resolve() / '..' / 'output'
 defaultSurfaceFolder = (outputFolder / 'surface').resolve()
 defaultMaskFolder = (outputFolder / 'masks').resolve()
 defaultCloudFolder = (outputFolder / 'clouds').resolve()

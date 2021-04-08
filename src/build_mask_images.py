@@ -5,7 +5,7 @@ from get_cloud_mask import get_cloud_mask
 from to_cloud_mask_image import to_cloud_mask_image
 from crop_image import crop_image
 
-userDataPath = Path().resolve() / '..' / 'userdata'
+userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 productStorePath = userDataPath / 'product_store'
 outputMaskPath = userDataPath / 'mask_store'
 imageListPath = userDataPath / 'imagePaths.txt'
