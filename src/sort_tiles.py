@@ -9,7 +9,7 @@ userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 defaultImagesPath = (userDataPath / 'rgb_store').resolve()
 defaultMasksOutputPath = (userDataPath / 'mask_store').resolve()
 
-intervals = [0, 10, 99, 100]
+intervals = [0, 10, 95, 100]
 
 def sort_tiles(maskFiles=get_mask_files(), imagesPath=defaultImagesPath, masksOutputPath=defaultMasksOutputPath, imagesOutputPath=defaultImagesPath, inputImageFilePath=defaultImagesPath):
 
@@ -37,6 +37,7 @@ def sort_tiles(maskFiles=get_mask_files(), imagesPath=defaultImagesPath, masksOu
                 #Copy Associated Image
                 imageFileName = baseFileName + '.jpg'
                 imageFile = inputImageFilePath / 'tiles' / imageFileName
+                print(imageFile)
                 if os.path.exists(imageFile):
                     outputImageFileName = baseFileName + '____image.jpg'
                     outputImageFilePath = imagesOutputPath / folder / outputImageFileName

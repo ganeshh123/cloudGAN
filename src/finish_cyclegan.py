@@ -24,9 +24,13 @@ def finish_cyclegan():
             print('Getting mask ' + indexString)
             shutil.copy(resultsFolder / filename, maskOutput / Path(indexString + '-mask.jpg') )
             index = index + 1
-        elif '_fake_A' in filename:
+    index = 1
+    for filename in os.listdir(resultsFolder):
+        indexString = str(index).zfill(5)        
+        if '_fake_A' in filename:
             clouds.append(filename)
             print('Getting cloud ' + indexString)
             shutil.copy(resultsFolder / filename, cloudOutput / Path(indexString + '-cloud.jpg') )
+            index = index + 1
 
 finish_cyclegan()

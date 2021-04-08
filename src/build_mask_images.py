@@ -23,7 +23,7 @@ def build_mask_images(imagePaths=loadtxt(imageListPath, dtype='str')):
 
         # Save to Mask Store
         imagePathFixed = str(imagePath).replace('.', '')[:-1]
-        newImageName = str(index) + '-' + Path(imagePathFixed).stem + '_mask.jpg'
+        newImageName = str(index) + '-' + Path(imagePathFixed).stem + '.jpg'
         newImagePath = outputMaskPath / newImageName
         cropped.save(newImagePath)
 

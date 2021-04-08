@@ -9,7 +9,7 @@ inputFolder = userDataPath / 'cyclegan_input'
 outputFolder = userDataPath / 'cyclegan_output'
 
 def prep_cyclegan():
-    copytree(masksPath / 'percentage99', (inputFolder / 'testB'), dirs_exist_ok=True)
-    copytree(rgbPath  / 'percentage99', (inputFolder / 'testA'), dirs_exist_ok=True)
+    copytree(masksPath / 'percentage95', (inputFolder / 'testB'), dirs_exist_ok=True)
+    copytree(rgbPath  / 'percentage95', (inputFolder / 'testA'), dirs_exist_ok=True)
 
 prep_cyclegan()

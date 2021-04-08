@@ -9,9 +9,11 @@ networkName = 'mask-cloud-networks'
 inputFolder = userDataPath / 'cyclegan_input'
 outputFolder = userDataPath / 'cyclegan_output'
 
+cycleganPath = str((Path(sys.path[0]) / 'cyclegan' / 'test.py').resolve())
+
 
 def run_cyclegan():
-    cycleganCommand = 'python cyclegan/test.py'
+    cycleganCommand = 'python ' + cycleganPath
     cycleganCommand += ' --dataroot ' + str(inputFolder.resolve())
     cycleganCommand += ' --name ' + networkName
     cycleganCommand += ' --model cycle_gan'
