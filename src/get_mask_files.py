@@ -4,7 +4,7 @@ import os
 
 userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 defaultMaskTilesPath = (userDataPath / 'mask_store' / 'tiles').resolve()
-defaultImageFormat = '.jpg'
+defaultImageFormat = '.png'
 
 def get_mask_files(maskTilesPath=defaultMaskTilesPath, imageFormat=defaultImageFormat):
 

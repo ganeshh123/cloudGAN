@@ -26,7 +26,7 @@ def slice_image(input, xPieces, yPieces, outputPath):
             box = (j * width, i * height, (j + 1) * width, (i + 1) * height)
             a = im.crop(box)
             try:
-                tileFileName = str(fileNum) + '-' + str(i+1) + '-' + str(j+1) + '-' + str(filename) + '-'+ '.jpg'
+                tileFileName = str(fileNum) + '-' + str(i+1) + '-' + str(j+1) + '-' + str(filename) + '-'+ '.png'
                 tileOutputPath = Path.resolve(outputPath) / tileFileName
                 a.save(tileOutputPath)
             except:

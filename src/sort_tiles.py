@@ -31,15 +31,15 @@ def sort_tiles(maskFiles=get_mask_files(), imagesPath=defaultImagesPath, masksOu
                 baseFileName = Path(maskFile).stem
                 print('Sorting ...      ' + baseFileName)
                 #Copy Mask
-                outputMaskFileName = baseFileName + '____mask.jpg'
+                outputMaskFileName = baseFileName + '____mask.png'
                 outputMaskFilePath = masksOutputPath / folder / outputMaskFileName
                 copyfile(maskFile, outputMaskFilePath)
                 #Copy Associated Image
-                imageFileName = baseFileName + '.jpg'
+                imageFileName = baseFileName + '.png'
                 imageFile = inputImageFilePath / 'tiles' / imageFileName
                 print(imageFile)
                 if os.path.exists(imageFile):
-                    outputImageFileName = baseFileName + '____image.jpg'
+                    outputImageFileName = baseFileName + '____image.png'
                     outputImageFilePath = imagesOutputPath / folder / outputImageFileName
                     copyfile(imageFile, outputImageFilePath)
                 else:

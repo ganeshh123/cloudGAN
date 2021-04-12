@@ -7,7 +7,7 @@ userDataPath = Path(sys.path[0]).resolve() / '..' / 'userdata'
 defaultImagesPath = (userDataPath / 'rgb_store').resolve()
 defaultMasksPath = (userDataPath / 'mask_store').resolve()
 
-def slice_images(imagesPath=defaultImagesPath, masksPath=defaultMasksPath, extension='.jpg'):
+def slice_images(imagesPath=defaultImagesPath, masksPath=defaultMasksPath, extension='.png'):
 
     imageFiles = []
     maskFiles = []

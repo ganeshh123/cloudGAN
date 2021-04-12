@@ -25,7 +25,7 @@ def build_rgb_images(imagePaths=loadtxt(imageListPath, dtype='str')):
 
         # Save Image to RGB store
         imagePathFixed = str(imagePath).replace('.', '')[:-1]
-        newImageName = str(index) + '-' + Path(imagePathFixed).stem + '.jpg'
+        newImageName = str(index) + '-' + Path(imagePathFixed).stem + '.png'
         print(newImageName)
         newImagePath = outputImagePath / newImageName
         cropped.save(newImagePath)

@@ -22,7 +22,7 @@ def finish_cyclegan():
         if '_real_B' in filename:
             masks.append(filename)
             print('Getting mask ' + indexString)
-            shutil.copy(resultsFolder / filename, maskOutput / Path(indexString + '-mask.jpg') )
+            shutil.copy(resultsFolder / filename, maskOutput / Path(indexString + '-mask.png') )
             index = index + 1
     index = 1
     for filename in os.listdir(resultsFolder):
@@ -30,7 +30,7 @@ def finish_cyclegan():
         if '_fake_A' in filename:
             clouds.append(filename)
             print('Getting cloud ' + indexString)
-            shutil.copy(resultsFolder / filename, cloudOutput / Path(indexString + '-cloud.jpg') )
+            shutil.copy(resultsFolder / filename, cloudOutput / Path(indexString + '-cloud.png') )
             index = index + 1
 
 finish_cyclegan()
