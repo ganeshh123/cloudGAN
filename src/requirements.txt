@@ -13,4 +13,3 @@ pytest
 pathlib
 dominate
 lxml
-bs4
