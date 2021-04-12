@@ -20,6 +20,7 @@ print('STEP 2 : Setting Up...\n\n')
 print('Creating Files and Folders')
 
 #Create env file
+os.system('git update-index --skip-worktree .env')
 open('.env', 'a+').close()
 
 userDataFolder = Path(sys.path[0]).resolve() / 'userdata'
