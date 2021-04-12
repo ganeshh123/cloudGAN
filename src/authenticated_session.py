@@ -25,7 +25,8 @@ def authenticated_session():
 
     testResponse = session.get('https://scihub.copernicus.eu/dhus/search?start=0&rows=100&q=(platformname:Sentinel-3 AND filename:S3A* AND producttype:SL_1_RBT___ AND ingestiondate:[2020-06-01T00:00:00.000Z TO NOW])')
     if testResponse.status_code == 401:
-        print('\n\nCopernicus Credentials are Invalid\n\n')
+        print('\n\nCopernicus Credentials are Invalid')
+        print('Please fill in the "copernicus_username" and "copernicus_password" fields correctly in the .env file!\n\n')
         return
 
     return session
