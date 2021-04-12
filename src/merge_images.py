@@ -5,8 +5,8 @@ from PIL import Image as PillowImage
 from skimage.exposure import exposure
 
 def merge_images(landscapePath, cloudPath):
-	landscape = PillowImage.open(landscapePath).convert("RGBA")
-	clouds = PillowImage.open(cloudPath).convert("RGBA")
+	landscape = PillowImage.open(landscapePath)
+	clouds = PillowImage.open(cloudPath)
 	output = PillowImage.blend(landscape, clouds, 0.5)
 
 	output = output.convert('RGB')
