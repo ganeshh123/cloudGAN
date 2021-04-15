@@ -11,7 +11,7 @@ productStorePath = userDataPath / 'product_store'
 outputMaskPath = userDataPath / 'mask_store'
 imageListPath = userDataPath / 'imagePaths.txt'
 
-def build_mask_images(imagePaths=loadtxt(imageListPath, dtype='str')):
+def build_mask_images(imagePaths=loadtxt(imageListPath, dtype='str', ndmin=1)):
     index = 1
     for imagePath in imagePaths:
         print(' >   Building Mask of ' + str(imagePath))
