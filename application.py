@@ -2,6 +2,7 @@ import sys
 import os
 from pathlib import Path
 import zipfile
+import shutil
 
 
 print('\n\nCloud Masking Training Set Generator')
@@ -95,9 +96,9 @@ while(noValidDownloadInput):
 try:
     os.remove(userDataFolder / 'imagePaths.txt')
 except:
-    print('nada')
+    print('Error Occured Deleting Image Paths File')
 
-os.system('python src/unzip_images.py')
+#os.system('python src/unzip_images.py')
 print('Done')
 
 print('\n\n------------------------------------------------------')
@@ -105,15 +106,15 @@ print('\n\n------------------------------------------------------')
 print('STEP 5 : Processing Inputs \n\n')
 
 print('\nConverting to RGB Images\n')
-os.system('python src/build_rgb_images.py')
+#os.system('python src/build_rgb_images.py')
 print('\nExtracting Masks\n')
-os.system('python src/build_mask_images.py')
+#os.system('python src/build_mask_images.py')
 print('\nSlicing into Tiles\n')
-os.system('python src/slice_images.py')
+#os.system('python src/slice_images.py')
 print('\nSorting by Cloud Cover\n')
-os.system('python src/sort_tiles.py')
+#os.system('python src/sort_tiles.py')
 print('\nPreparing CycleGAN\n')
-os.system('python src/prep_cyclegan.py')
+#os.system('python src/prep_cyclegan.py')
 print('\nDone\n')
 
 print('\n\n------------------------------------------------------')
@@ -121,9 +122,9 @@ print('\n\n------------------------------------------------------')
 print('STEP 6 : Building Fake Clouds \n\n')
 
 print('\n Running CycleGAN\n')
-os.system('python src/run_cyclegan.py')
+#os.system('python src/run_cyclegan.py')
 print('\n Fetching Clouds\n')
-os.system('python src/finish_cyclegan.py')
+#os.system('python src/finish_cyclegan.py')
 print('\nDone\n')
 
 print('\n\n------------------------------------------------------')
@@ -131,6 +132,14 @@ print('\n\n------------------------------------------------------')
 print('STEP 7 : Overlaying Clouds \n\n')
 
 print('\n Overlaying Clouds\n')
-os.system('python src/overlay_clouds.py')
+#os.system('python src/overlay_clouds.py')
 print('\nDone\n')
-print('\nFinished - Generated Training Set can be found in outputs folder!\n')
+
+print('\n\n------------------------------------------------------')
+
+print('STEP 8 : Preparing Outputs for Export \n\n')
+print('\n Compressing Output Folder...\n')
+shutil.make_archive('./output/training-set', 'zip', './output')
+print('\nDone\n')
+print('\nFinished - Generated Training Set can be found in outputs folder\n')
+exitInstruction = input('Press Enter to Exit    ')
