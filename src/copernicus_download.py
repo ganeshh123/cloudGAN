@@ -17,11 +17,11 @@ searchResultsPath = userDataPath / 'searchResults.txt'
 # Directory to store downloads
 productStorePath = userDataPath / 'product_store'
 
-def copernicus_download(urls=loadtxt(searchResultsPath, dtype='str')):
+def copernicus_download(urls=loadtxt(searchResultsPath, dtype='str', ndmin=1)):
 
     # Print the number of images to download
     print('To Download : ')
-    print(' ' + str(len(urls)) + ' images')
+    print(' ' + str(urls.size) + ' images')
 
     # Authenticate Session with Copernicus
     print('Creating Authenticated Session ...')
@@ -32,6 +32,7 @@ def copernicus_download(urls=loadtxt(searchResultsPath, dtype='str')):
         session = authenticated_session()
 
     print('Downloading...')
+    print(type(urls))
 
     index = 1
     for url in urls:

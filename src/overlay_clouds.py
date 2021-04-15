@@ -23,7 +23,7 @@ def overlay_clouds(surfaceFolder=defaultSurfaceFolder, cloudFolder=defaultCloudF
                 surfaceFilePath = str((surfaceFolder / surfaceFileName).resolve())
                 print('Overlaying Cloud... ' + cloudFileName + ' on ' + surfaceFileName)
                 overlayImage = merge_images(surfaceFilePath, cloudFilePath)
-                overlayImageName = cloudFileName[0:5] + '-image.png'
+                overlayImageName = cloudFileName[0:5] + '-image-' + cloudFileName[-102:]
                 overlayImage.save(imageFolder / overlayImageName)
                 print('>    Created ' + overlayImageName + ' successfully!')
 

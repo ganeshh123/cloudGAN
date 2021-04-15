@@ -13,7 +13,7 @@ outputImagePath = userDataPath / 'rgb_store'
 imageListPath = userDataPath / 'imagePaths.txt'
 
 
-def build_rgb_images(imagePaths=loadtxt(imageListPath, dtype='str')):
+def build_rgb_images(imagePaths=loadtxt(imageListPath, dtype='str', ndmin=1)):
     index = 1
     for imagePath in imagePaths:
         print(' >   Building Image of ' + str(imagePath))
