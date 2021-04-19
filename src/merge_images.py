@@ -10,7 +10,7 @@ def merge_images(landscapePath, cloudPath):
 	output = PillowImage.blend(landscape, clouds, 0.5)
 
 	output = output.convert('RGB')
-	output = exposure.rescale_intensity(output, out_range=(0, 255))
+	output = exposure.rescale_intensity(np.asanyarray(output), out_range=(0, 255))
 	output = PillowImage.fromarray(np.uint8(output))
 
 	return output
