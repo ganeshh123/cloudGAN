@@ -13,3 +13,4 @@ pytest
 pathlib
 dominate
 lxml
+zipfile
