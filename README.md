@@ -122,7 +122,7 @@ In Colab, run the `Run CycleGAN` cell of your choice.
 
 ### Step 6 - Overlaying Artificial Clouds
 
-The application will then overlay the artificially generated clouds over a cloud-free land/sea surface image tile, to create a fake cloudy satellite image. The cloudless images come from a bundled dataset of manually verified cloud-free surface false color images.
+The application will then overlay the artificially generated clouds over a cloud-free land/sea surface image tile, to create a fake cloudy satellite image. The cloudless images come from a [bundled dataset of manually verified cloud-free surface false color images](https://github.com/ganeshh123/satellite-ai-datasets/releases/latest).
 
 To do this manually, run in the terminal:
 ```bash
