@@ -34,7 +34,7 @@ The application uses a pre-trained CycleGAN model which converts cloud masks int
 
 ### Local Machine
 
-1. Clone this Repository or Download the [Latest Release](#)
+1. Clone this Repository or Download the [Latest Release](https://github.com/ganeshh123/cloudGAN/releases/download/1.0.0/cloudGAN-1.0.0.zip)
 2. Edit the `.env` file, and fill out copernicus credentials
 3. Run `application.py` with Python 3.8 or higher
 4. Follow the prompts in the application window, training set will be generated in the `output` folder
