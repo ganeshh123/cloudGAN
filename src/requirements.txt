@@ -12,4 +12,5 @@ python-dotenv
 pytest
 pathlib
 dominate
+beautifulsoup4
 lxml
