@@ -1,7 +1,13 @@
 # CloudGAN
 Paired Training Data Generator for Cloud Masking AI.
 
+## Description
+
+<img src="docs/output_training_set.jpg" alt="Output Training Set" width="400px" height="auto"/>
+
 The application uses a pre-trained CycleGAN model which converts cloud masks into cloud images. It allows for the creation of cloud masking training data with accurate masks, using artificial cloudy images produced from existing masks.
+
+<img src="docs/workflow.jpg" alt="Application Workflow" width="400px" height="auto"/>
 
 ## Requirements
 ### Required
@@ -102,6 +108,8 @@ In Colab, run the `Process Inputs` cell.
 
 The application will then a bundled custom distribution of CycleGAN to transform the mask images into clouds, using a bundled model. This can take a lot of time, depending on hardware.
 
+<img src="docs/model_conversion.jpg" alt="CycleGAN model converting masks into Clouds" width="400px" height="auto"/>
+
 The application runs CycleGAN in CPU mode by default for compatibility. To use a GPU, replace `--gpu_ids -1` with `--gpu_ids 0` in `src/run_cyclegan.py`. The `-1` should be replaced with `0` or the number of the desired GPU. The GPU must be nVidia have Cuda Drivers installed, and configured with `pytorch`.
 
 To run this manually in CPU mode:
@@ -123,6 +131,8 @@ In Colab, run the `Run CycleGAN` cell of your choice.
 ### Step 6 - Overlaying Artificial Clouds
 
 The application will then overlay the artificially generated clouds over a cloud-free land/sea surface image tile, to create a fake cloudy satellite image. The cloudless images come from a [bundled dataset of manually verified cloud-free surface false color images](https://github.com/ganeshh123/satellite-ai-datasets/releases/latest).
+
+<img src="docs/cloud_overlay.jpg" alt="Artifical Clouds being Overlaid" width="400px" height="auto"/>
 
 To do this manually, run in the terminal:
 ```bash
