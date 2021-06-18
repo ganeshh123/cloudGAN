@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="icon_trans.png" />
+    <title>CloudGAN - Paired Training Data Generator for Cloud Masking AI.</title>
+    <meta name="description"
+        content="Uses a pre-trained CycleGAN model which converts cloud masks into cloud images. It allows for the creation of cloud masking training data with accurate masks, using artificial cloudy images produced from existing masks." />
+    <style>
+        @font-face {
+            font-family: "iA Writer Quattro S";
+            src: url("https://cors.bridged.cc/https://ganeshh123.github.io/assets/iAWriterQuattroS-Regular.woff") format("woff")
+        }
+
+        * :not(code) {
+            font-family: 'iA Writer Quattro S', sans-serif;
+            color: rgba(255, 255, 255, 0.9);
+            box-sizing: border-box;
+        }
+
+        html {
+            max-height: 100vh;
+            max-width: 100vw;
+        }
+
+        body {
+            background-color: rgb(47, 52, 55);
+            width: 100vw;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-left: 10px;
+            max-width: 800px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        caption,
+        ul,
+        figure {
+            max-width: 100%;
+        }
+
+        img {
+            max-width: 600px;
+            height: auto;
+        }
+
+        p {
+            margin-left: 10px;
+        }
+
+        pre,
+        code {
+            margin-left: 10px;
+            background-color: #3f4447;
+            max-width: 800px;
+            overflow-x: auto;
+        }
+
+        .contents {
+            list-style-type: none;
+        }
+
+        iframe {
+            width: 640px;
+            height: 360px;
+        }
+
+        #footer {
+            margin-top: 15px;
+            text-align: center;
+            width: 100vw;
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+
+        @media only screen and (max-width: 425px) {
+            iframe {
+                width: 384px;
+                height: 216px;
+            }
+
+            img {
+                max-width: 300px;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="cloudgan">CloudGAN</h1>
+    <p>Paired Training Data Generator for Cloud Masking AI.</p>
+    <img src="output_training_set.jpg" alt="Output Training Set" width="400px" height="auto">
+    <ul class="contents">
+        <li><a href="#description">Description</a></li>
+        <li><a href="#requirements">Requirements</a></li>
+        <ul class="contents">
+            <li><a href="#required">Required</a></li>
+            <li><a href="#will-be-installed">Will be Installed</a></li>
+        </ul>
+
+        <li><a href="#running">Running</a></li>
+        <ul class="contents">
+            <li><a href="#local-machine">Local Machine</a></li>
+            <li><a href="#colab">Colab</a></li>
+        </ul id="contents">
+
+        <li><a href="#usage">Usage</a></li>
+        <ul class="contents">
+            <li><a href="#step-1-install-requirements">Step 1 - Install Requirements</a></li>
+            <li><a href="#step-2-setting-up-file-structure">Step 2 - Setting up File Structure</a></li>
+            <li><a href="#step-3-searching-downloading-products">Step 3 - Searching &amp; Downloading Products</a>
+            </li>
+            <li><a href="#step-4-processing-inputs">Step 4 - Processing Inputs</a></li>
+            <li><a href="#step-5-running-the-model">Step 5 - Running the Model</a></li>
+            <li><a href="#step-6-overlaying-artificial-clouds">Step 6 - Overlaying Artificial Clouds</a></li>
+            <li><a href="#step-7-fetching-the-output">Step 7 - Fetching the Output</a></li>
+        </ul>
+
+        <li><a href="#additional-information">Additional Information</a></li>
+        <ul class="contents">
+            <li><a href="#file-structure">File Structure</a></li>
+            <li><a href="#model-information">Model Information</a></li>
+            <li><a href="#data-source">Data Source</a></li>
+            <li><a href="#bundled-applications">Bundled Applications</a></li>
+        </ul>
+        </ul>
+    <h2 id="description">Description</h2>
+    <p>The application uses a pre-trained CycleGAN model which converts cloud masks into cloud images. It allows for the
+        creation of cloud masking training data with accurate masks, using artificial cloudy images produced from
+        existing masks.</p>
+    <img src="workflow.jpg" alt="Application Workflow" width="400px" height="auto">
+    <h2 id="requirements">Requirements</h2>
+    <h3 id="required">Required</h3>
+    <ul>
+        <li>Python 3.8+
+            <ul>
+                <li>Shutil</li>
+                <li>OS</li>
+                <li>Sys</li>
+                <li>Zipfile</li>
+            </ul>
+        </li>
+        <li>Pip Package Manager</li>
+        <li><a href="https://scihub.copernicus.eu/dhus/#/self-registration">Copernicus Credentials</a></li>
+    </ul>
+    <h3 id="will-be-installed">Will be Installed</h3>
+    <ul>
+        <li>Pillow</li>
+        <li>Numpy</li>
+        <li>Torch</li>
+        <li>Scipy</li>
+        <li>H5netcdf</li>
+        <li>Xarray</li>
+        <li>Wheel</li>
+        <li>Visdom</li>
+        <li>TorchVision</li>
+        <li>Scikit-Image</li>
+        <li>Python-dotenv</li>
+        <li>Pytest</li>
+        <li>Pathlib</li>
+        <li>Dominate</li>
+        <li>LXML</li>
+    </ul>
+    <h2 id="running">Running</h2>
+    <h3 id="local-machine">Local Machine</h3>
+    <ol>
+        <li>Clone this Repository or Download the <a
+                href="https://github.com/ganeshh123/cloudGAN/releases/download/1.0.0/cloudGAN-1.0.0.zip">Latest
+                Release</a></li>
+        <li>Edit the <code>.env</code> file, and fill out copernicus credentials</li>
+        <li>Run <code>application.py</code> with Python 3.8 or higher</li>
+        <li>Follow the prompts in the application window, training set will be generated in the <code>output</code>
+            folder</li>
+    </ol>
+    <h3 id="colab">Colab</h3>
+    <ol>
+        <li>Open the <code>colab.ipynb</code> notebook in Google Colab</li>
+        <li>Set the Runtime to <code>GPU</code></li>
+        <li>Follow the instructions and run the steps in the notebook, training set will be generated in the
+            <code>output</code> folder</li>
+    </ol>
+    <h2 id="usage">Usage</h2>
+    <p>The application will run through the entire workflow automatically, but each step is described below.</p>
+    <h3 id="step-1-install-requirements">Step 1 - Install Requirements</h3>
+    <p>Running <code>application.py</code> will installed the required dependencies automatically using
+        <code>pip</code>.</p>
+    <p>To do this manually, run <code>pip install -r src/requirements.txt</code> in the terminal.</p>
+    <h3 id="step-2-setting-up-file-structure">Step 2 - Setting up File Structure</h3>
+    <p>The application script will then generate the necessary files and directories for it to function. This is
+        compulsory.</p>
+    <p>To do this manually, run the <code>Setup</code> cell in the <code>colab.ipynb</code> notebook.</p>
+    <h3 id="step-3-searching-downloading-products">Step 3 - Searching &amp; Downloading Products</h3>
+    <p>The application will then prompt to download cloudy Sentinel-3 SLSTR Products to extract cloud masks. These cloud
+        masks are one domain of the training set, and they will be used to generate artificially cloudy images for the
+        second domain. Enter the number of products you want to download, and press <code>Enter</code>. The number of
+        images generated per product varies a lot, but each product generally produces around <code>50</code> usable
+        images and masks.</p>
+    <p>To do this manually, run in the terminal:</p>
+    <pre><code class="language-bash">python3 src/search_for_cloudy.py --productCount &lt;replace with desired number of products&gt;
+    
+    python3 src/copernicus_download.py
+    </code></pre>
+    <p>In Colab, run the <code>Download Products</code> cell, entering in the number of desired products.</p>
+    <p>It&rsquo;s important to ensure that valid copernicus credentials have been entered into the <code>.env</code>
+        files as these are required to authenticate the acquisition of the products.</p>
+    <p>If you have your own products, you can place the <code>.zip</code> files in the
+        <code>userdata/product_store</code> folder and skip this step.</p>
+    <h3 id="step-4-processing-inputs">Step 4 - Processing Inputs</h3>
+    <p>The application will then proceed to unpack the products, and extract cloud masks from them. The cloud masks will
+        be sliced into small tiles, and sorted by cloud cover. The chosen masks are then ready to be transformed in the
+        model.</p>
+    <p>To do this manually, run in the terminal:</p>
+    <pre><code class="language-bash">python3 src/unzip_images.py
+    
+    python3 src/build_rgb_images.py
+    
+    python3 src/build_mask_images.py
+    
+    python3 src/slice_images.py
+    
+    python3 src/sort_tiles.py
+    
+    python3 src/prep_cyclegan.py
+    </code></pre>
+    <p>In Colab, run the <code>Process Inputs</code> cell.</p>
+    <h3 id="step-5-running-the-model">Step 5 - Running the Model</h3>
+    <p>The application will then a bundled custom distribution of CycleGAN to transform the mask images into clouds,
+        using a bundled model. This can take a lot of time, depending on hardware.</p>
+    <img src="model_conversion.jpg" alt="CycleGAN model converting masks into Clouds" width="400px" height="auto">
+    <p>The application runs CycleGAN in CPU mode by default for compatibility. To use a GPU, replace
+        <code>--gpu_ids -1</code> with <code>--gpu_ids 0</code> in <code>src/run_cyclegan.py</code>. The <code>-1</code>
+        should be replaced with <code>0</code> or the number of the desired GPU. The GPU must be nVidia have Cuda
+        Drivers installed, and configured with <code>pytorch</code>.</p>
+    <p>To run this manually in CPU mode:</p>
+    <pre><code class="language-bash">python3 ./src/cyclegan/test.py --dataroot ./userdata/cyclegan_input --name mask-cloud-networks --model cycle_gan --checkpoints_dir ./data --results_dir ./userdata/cyclegan_output --num_test 3500 --load_size 200 --crop_size 200 --gpu_ids -1
+    
+    python3 src/finish_cyclegan.py
+    </code></pre>
+    <p>To run this manually in GPU mode:</p>
+    <pre><code class="language-bash">python3 ./src/cyclegan/test.py --dataroot ./userdata/cyclegan_input --name mask-cloud-networks --model cycle_gan --checkpoints_dir ./data --results_dir ./userdata/cyclegan_output --num_test 3500 --load_size 200 --crop_size 200
+    
+    python3 src/finish_cyclegan.py
+    </code></pre>
+    <p>In Colab, run the <code>Run CycleGAN</code> cell of your choice.</p>
+    <h3 id="step-6-overlaying-artificial-clouds">Step 6 - Overlaying Artificial Clouds</h3>
+    <p>The application will then overlay the artificially generated clouds over a cloud-free land/sea surface image
+        tile, to create a fake cloudy satellite image. The cloudless images come from a <a
+            href="https://github.com/ganeshh123/satellite-ai-datasets/releases/latest">bundled dataset of manually
+            verified cloud-free surface false color images</a>.</p>
+    <img src="cloud_overlay.jpg" alt="Artifical Clouds being Overlaid" width="400px" height="auto">
+    <p>To do this manually, run in the terminal:</p>
+    <pre><code class="language-bash">python3 src/overlay_clouds.py
+    </code></pre>
+    <h3 id="step-7-fetching-the-output">Step 7 - Fetching the Output</h3>
+    <p>The process is now complete, and the generated training set can be found in the <code>output</code> folder. The
+        <code>images</code> folder contains artificial cloudy images and <code>masks</code> folder contains matching
+        accurate cloud masks from which the cloudy images were formed. The two sets can be used as a paired training set
+        to enhance existing Cloud Masking AI. The application will create a <code>training_set.zip</code> archive in the
+        <code>output</code> folder for quick download and distribution.</p>
+    <p>To do this manually, run the python code:</p>
+    <pre><code class="language-python">shutil.make_archive('./output/training-set', 'zip', './output')
+    </code></pre>
+    <p>In Colab, run the <code>Compress Output for Download</code> cell. Run the appropriate additional cells in Colab
+        if you wish to transfer the output to Google Drive.</p>
+    <h2 id="additional-information">Additional Information</h2>
+    <h3 id="file-structure">File Structure</h3>
+    <p>The application is arranged with a file structure that supports adaptability and modification.</p>
+    <p>The <code>data</code> folder contains static data that ships with the application. This includes the trained
+        neural network, a <code>zip</code> of the cloudless dataset which is extracted when the application runs, and a
+        <code>values.py</code> folder for setting options. If the model is improved, or the cloudless set extended,
+        these can be easily replaced in this folder.</p>
+    <p>The <code>src</code> folder contains the custom scripts for the application, and a custom distribution of the
+        cyclegan code.</p>
+    <p>The <code>.env</code> file should be edited and filled out with copernicus credentials to authenticate product
+        search and downloads.</p>
+    <p>The <code>colab.ipynb</code> file contains a Colab notebook for running the application on Colab. This allows for
+        faster results for large scale production using a GPU.</p>
+    <p>During execution a <code>userdata</code> folder is created for storing temporary files and values. Products are
+        downloaded and extracted into the <code>product_store</code> folder, and manually downloaded products can be
+        placed here to be used. The <code>rgb_store</code> and <code>mask_store</code> folders are used to store false
+        color images, masks and their respective sorted tiles. Datasets are transferred to the
+        <code>cyclegan_input</code> folder, and the artificial clouds are retrieved from the
+        <code>cyclegan_output</code> folder once finished. There are also text files to store temporary lists.</p>
+    <p>An <code>output</code> folder is also generated after execution. This contains the produced training set for the
+        cloud masking AI. The <code>masks</code> folder contains the cloud masks which were used to produce the
+        identically numbered artificial cloudy pictures in the <code>images</code> folder The raw artificial clouds and
+        surface images are also provided in case they are required.</p>
+    <h3 id="model-information">Model Information</h3>
+    <p>The bundled model was trained on CycleGAN with real SLSTR Cloud Masks and Cloudy Ocean Images. The product
+        manifest files for the products used for training the model can be found in the <code>output</code> folder.</p>
+    <p>The model was trained with <code>1000</code> tiles for <code>200</code> epochs.</p>
+    <h3 id="data-source">Data Source</h3>
+    <p>The cloud masks used in this application are obtained free of charge from <a
+            href="https://scihub.copernicus.eu/dhus/#/home">Copernicus Open Access Hub</a>. They are extracted out of
+        Level 1 Products from the SLSTR Instrument on the Sentinel-3 Satellites.</p>
+    <h3 id="bundled-applications">Bundled Applications</h3>
+    <p>The application integrates two existing projects into its workflow:</p>
+    <ul>
+        <li>
+            <p><a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/">Pix2Pix CycleGAN</a> - A Cyclic
+                Generative Adversarial Network for bi-directional Image to Image Transformation. A customized
+                distribution of CycleGAN is provided in <code>src.cyclegan</code>. License for CycleGAN can be found in
+                <code>src/cyclegan/LICENSE</code>.</p>
+        </li>
+        <li>
+            <p><a href="https://github.com/samueljackson92/slstr-tools">SLSTR Tools</a> - A collection of Python scripts
+                to load the raw SLSTR product data into programmable data structures, like arrays. The
+                <code>ImageLoader</code> class from SLSTR Tools is located in <code>src/image.py</code>.</p>
+        </li>
+    </ul>
+
+    <a id='footer' href='https://nesh.gq/'>Ganesh H</a>
+</body>
+
+
+</html>
